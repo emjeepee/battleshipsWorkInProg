@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+ <!--  <script src="/src/DOMinteractionModule.js"></script>  Comment out   -->
+    <meta charset="UTF-8">
+    <title>BattleShips</title>
+  <script defer src="bundle.js"></script></head>
+
+  <body>
+
+
+<!-- TEST STUFF-->    
+<!-- END TEST STUFF-->    
+
+<!--The box that displays "Game over! You/the enemy have/has won"-->
+<div class="gameOverBox">
+<p class="gameOverText"></p>
+</div>
+
+
+<!--The down arrows-->
+<!--
+    The "6" that is the innerHTML of the four following <p> gets a class that
+    has font webdings, making the "6" a down arrow.
+    Styles flashArrow1/2/3/4 make flash the divs containing the <p> for the "6".  
+    downArrowDiv1/2/3/4 position the divs containing the <p> for the "6" character
+    downArrow1p/2p/3p/4p are IDs simply to target the <p>s
+    webdingsText1/2/3/4 set position, font (webdings) and size of "6" and amke it flash
+    
+    -->    
+<div class="flashArrow1 flashArrowContainer downArrowContainer downArrowDiv1" id="downArrowDiv1id">
+<p class="webdingsText1" id="downArrow1p">6</p>
+</div>
+
+<div class="flashArrow2 flashArrowContainer downArrowContainer downArrowDiv2" id="downArrowDiv2id">
+    <p class="webdingsText2" id="downArrow2p">6</p>
+</div>
+
+<div class="flashArrow3 flashArrowContainer downArrowContainer downArrowDiv3" id="downArrowDiv3id">
+        <p class="webdingsText3" id="downArrow3p">6</p>
+</div>
+
+<div class="flashArrow4 flashArrowContainer downArrowContainer downArrowDiv4" id="downArrowDiv4id">
+    <p class="webdingsText4" id="downArrow4p">6</p>
+</div>
+
+
+
+<!-- The all-enclosing div-->    
+<div class="realEnclDivClass">
+
+<!-- The almost-all-enclosing div-->
+<div class="enclDivClass">
+
+
+
+
+    <!-- The div containing the text  
+    "Battleships", the start button 
+    and the info area-->
+    <div class="headlineEnclDiv">
+        <div class="bShipsTextContainer"> <!-- black dotted border in dev-->
+        <div class="bShipsTextEnclose"> <!-- red solid border in dev-->
+            <p class="battleshipsText">BATTLESHIPS</p> <!-- the headline, ie "Battleships"-->
+        </div>    
+        <div class="firstInfoArea"> <!-- blue dotted border in dev-->
+            <p class="firstInfoAreaTextImportant" id="firstInfoAreaP">Begin by placing your vessels</p>
+             
+            
+        </div>
+        <div class="firstInfoAreaOne"> <!-- yellow dotted border in dev-->
+            <p class="firstInfoAreaOneTextNormal" id="firstInfoAreaOneP">... ... ...</p>
+        </div>
+        </div> <!-- end div of class bshipsTextContainer-->
+        <div class="startButtContainer">
+        <button class="largeButton1" id="startButton"> <!-- the "Start"/"Begin again" button-->
+            <p class="largeButton1Text">START</p>
+        </button>
+        </div>
+        <!-- the area for messages such as "Game over!"-->
+        <div id="infoBoxEnclosingDiv"> <!-- Overall container for the info area-->
+
+            <!-- Originally for messages 
+            <div id="messageDiv"> 
+                <p class="messageTextNormal" id = "messageText">... ... ...</p> 
+            </div> -->
+            <div id="shipsStatusesEncloseDiv"> <!-- Overall container div for status info on enemy and humna ships-->
+                <div class="shipsStatusesDivOne"> <!-- human ships' statuses -->
+                    <div class="shipsStatusesTitleDiv">
+                        <p class="shipsStatusesTitleText">YOUR SHIPS</p> <!-- Title, ie  -->
+                    </div> 
+                        <div class="shipsTextsContainer" id="yourShipsCont">
+                            <div class="shipsTextContainerOne">
+                                <p class="shipText">Patrolboat</p>
+                                <p class="shipText">Sub</p>
+                                <p class="shipText">Battleship</p>
+                                <p class="shipText">Destroyer</p>
+                                <p class="shipText">Carrier</p>
+                            </div>
+                            <div class="shipsTextContainerTwo">
+                                <p id="youPB" class="shipStatusTextAfloat">...</p>
+                                <p id="youSU" class="shipStatusTextAfloat">...</p>
+                                <p id="youBA" class="shipStatusTextAfloat">...</p>
+                                <p id="youDE" class="shipStatusTextAfloat">...</p>
+                                <p id="youCA" class="shipStatusTextAfloat">...</p>
+                            </div>
+                    </div> <!-- End shipsTextsContainer -->
+                    </div>  <!-- End shipsStatusesDiv -->
+                    
+                    <div class="shipsStatusesDivTwo"> <!-- ai ships' statuses -->
+                        <div class="shipsStatusesTitleDiv">
+                            <p class="shipsStatusesTitleText">ENEMY SHIPS</p> <!-- Title, ie  -->
+                        </div> 
+                            <div class="shipsTextsContainer"  id="aiShipsCont">
+                                <div class="shipsTextContainerOne">
+                                    <p class="shipText">Patrolboat</p>
+                                    <p class="shipText">Sub</p>
+                                    <p class="shipText">Battleship</p>
+                                    <p class="shipText">Destroyer</p>
+                                    <p class="shipText">Carrier</p>
+                                </div>
+                                <div class="shipsTextContainerTwo">
+                                    <p id="aiPB" class="shipStatusTextAfloat">...</p>
+                                    <p id="aiSU" class="shipStatusTextAfloat">...</p>
+                                    <p id="aiBA" class="shipStatusTextAfloat">...</p>
+                                    <p id="aiDE" class="shipStatusTextAfloat">...</p>
+                                    <p id="aiCA" class="shipStatusTextAfloat">...</p>
+                                </div>
+                        </div> <!-- End shipsTextsContainer -->
+                        </div>  <!-- End shipsStatusesDiv -->
+            </div>   <!-- End shipsStatusesEncloseDiv -->
+        </div> <!-- End overall container for the info area (id infoBoxEnclosingDiv)-->
+
+<!-- NOTE: you can disable a button in HTML like this:
+        <button disabled class="largeButton1" id="newStartButton">
+            <p class="largeButton1Text"  >New start</p>
+        </button>
+ -->
+    </div> <!-- end headlineEnclDiv -->
+
+    <div class="greyBackground1">  <!-- a grey-background div that contains these three areas:
+    1) that for "Home waters" and "Enemy waters"
+    2) the area where the user selects his/her ships
+    3) the area that contains the grids
+    -->
+    <!--The enclosing div for the
+    text that reads "Home waters"
+    and "Enemy waters"  -->
+    <div class="watersTextEnclDiv">
+<div>
+    <p class="watersText">Home waters</p>
+</div>
+<div>
+    <p class="watersText">Enemy waters</p>
+</div>
+    </div>
+
+
+    <!--The <div> that encloses the 
+        area where user selects his/her ships -->
+      <div class="shipsEnclosingDiv">
+
+        <div class="largeButton2" id="resetButton">
+            <p class="largeButton1Text">RESET</p>
+        </div>
+
+        <div class="placementEnclDiv">     <!--Blue border in test -->
+            <p class="shipsP">Place your vessels</p>
+        </div>
+
+        <div class="vesselsContainer"> 
+
+<!--Now the five areas that contain the purple buttons
+that allow the user to select the boat he/she is about 
+to place -->
+            <div class="vesselsTextDiv"> <!--green border in test -->
+                <!-- text next to purple button: -->
+                <p id = "patrolBoatText" class="vesselsText">patrolboat <br>(2 squares)</p>
+                <!--Purple button: -->
+                <button id = "patrolBoatButt" class="smallButton smallButtonColour" type="button"  ></button>
+            </div>
+
+            <div class="vesselsTextDiv"> <!--green border in test -->
+                <p id = "subText" class="vesselsText">sub<br>(3 squares)</p>
+                <button id = "subButt" class="smallButton smallButtonColour" type="button"  ></button>
+            </div>
+
+            <div class="vesselsTextDiv"> <!--green border in test -->
+                <p id = "battleshipText"  class="vesselsText">battleship<br>(3 squares)</p>
+                <button id = "battleshipButt" class="smallButton smallButtonColour" type="button"  ></button>
+            </div>
+
+            <div class="vesselsTextDiv"> <!--green border in test -->
+                <p id = "destroyerText"  class="vesselsText">destroyer<br>(3 squares)</p>
+                <button id = "destroyerButt" class="smallButton smallButtonColour" type="button"  ></button>
+            </div>
+
+            <div class="vesselsTextDiv"> <!--green border in test -->
+                <p id = "carrierText" class="vesselsText">carrier<br>(5 squares)</p>
+                <button id = "carrierButt" class="smallButton smallButtonColour" type="button" ></button>
+            </div>
+
+        </div> <!--End div of class vesselsContainer -->
+
+    </div> <!--End div of class shipsEnclosingDiv -->
+
+
+
+        <!-- The div that encloses the homewaters 
+            and enemy waters grid divs-->
+            <div class="seasEnclosingDiv">
+                <div class="watersEncloseDiv" id="hoWEnclDiv">
+                    <div class="containerOne" id="hoContOne">
+                                <div class="homeWatersDiv" id="homeW"><!--The home-waters grid container -->
+                                    
+                                    <div data-x = '1' data-y = '1' class="homeGridSquare" id="myHomeSqOne"></div>
+                                    <div data-x = '2' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '1' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '2' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '3' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '4' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '5' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '6' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '7' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '8' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '9' class="homeGridSquare"></div>
+                                    <div data-x = '1' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '2' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '3' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '4' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '5' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '6' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '7' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '8' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '9' data-y = '10' class="homeGridSquare"></div>
+                                    <div data-x = '10' data-y = '10' class="homeGridSquare"></div>
+                                </div> <!-- end div for home waters-->
+                                </div>
+                            </div>  <!-- end div that encloses the div that encloses home water squares (divs)-->               
+                
+                <!-- Now the div for the enemy waters grid -->             
+                <div class="watersEncloseDiv" id="enWEnclDiv">
+                    <div class="containerOne" id="enContOne">
+                <div class="enemyWatersDiv" id="enemyW">
+                                    <div data-xe = '1' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '1' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '2' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '3' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '4' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '5' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '6' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '7' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '8' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '9' class="enemyGridSquare"></div>
+                                    <div data-xe = '1' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '2' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '3' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '4' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '5' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '6' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '7' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '8' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '9' data-ye = '10' class="enemyGridSquare"></div>
+                                    <div data-xe = '10' data-ye = '10' class="enemyGridSquare"></div>
+                </div> 
+            </div><!-- End containerOne -->
+            </div> 
+        </div>    
+
+</div> <!-- End the almost-all-enclosing div-->
+
+</div>  <!-- End the all-enclosing div-->
+
+  </body>
+</html>
+
+<!--Not used   <div class="buttsCont">
+                    <input  type="radio" id="vButtPatrol" name="rbPatrol" value="V" class="rButt">
+                    <label class="rbLabel" for="vButt">V</label>
+                    <input  type="radio" id="hButtPatrol" name="rbPatrol" value="H" class="rButt">
+                    <label class="rbLabel" for="hButt">H</label><br>
+                </div> -->               
+
+
